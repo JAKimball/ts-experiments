@@ -1,0 +1,11 @@
+{
+  "jest.jestCommandLine": "npm run test --",
+  "cSpell.words": [
+    "aaazzzrrrrr",
+    "abchij",
+    "abchijjklmmmmmmmmmmmm",
+    "abchijjklmmmmmmmmmmmmr",
+    "ackermann"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

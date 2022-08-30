@@ -1,0 +1,16 @@
+{
+  "collectCoverage": true,
+  "coverageDirectory": "coverage",
+  "coverageProvider": "v8",
+  "globals": {
+    "ts-jest": {
+      "useESM": true
+    }
+  },
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "./dist/"
+  ],
+  "verbose": true,
+  "preset": "ts-jest/presets/default-esm"
+}
