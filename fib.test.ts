@@ -1,4 +1,5 @@
 // import * from "jest"
+import { assert, describe, expect, it } from 'vitest'
 import { fib, numWays, hailstone, hailstone2, gridTraveler, decodeStr, encodeStr, node } from "./fib.js"
 // import * as fib from "./js"
 

@@ -15,7 +15,7 @@ type MemoizableFunction = (...args: any[]) => any
 
 (BigInt.prototype as any).toJSON = function () {
   return this.toString()
-};
+}
 
 /**
  * Generically create a memoized version of the function passed.  
