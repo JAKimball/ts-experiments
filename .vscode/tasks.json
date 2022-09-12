@@ -8,6 +8,31 @@
       "problemMatcher": [],
       "label": "npm: test",
       "detail": "vitest"
+    },
+    {
+      "type": "npm",
+      "script": "test:ui",
+      "problemMatcher": [],
+      "label": "npm: test:ui",
+      "detail": "vitest --ui"
+    },
+    {
+      "type": "typescript",
+      "tsconfig": "tsconfig.json",
+      "option": "watch",
+      "problemMatcher": ["$tsc-watch"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "label": "tsc: watch - tsconfig.json"
+    },
+    {
+      "type": "npm",
+      "script": "start",
+      "problemMatcher": [],
+      "label": "npm: start",
+      "detail": "node ./dist/fib.js"
     }
   ]
 }

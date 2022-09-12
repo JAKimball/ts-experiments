@@ -1,6 +1,6 @@
 // "use strict";
 
-import { memoize } from "./memoize.js"
+import { memoize } from './memoize.js'
 
 type AckermannFunction = {
   (m: number, n: bigint): bigint
@@ -26,9 +26,9 @@ export const ackermann_m = memoize((m: number, n: bigint): bigint => {
 
 export const ackermann_test = (ackermann: AckermannFunction) => {
   const mArray: bigint[][] = []
-  for (let m: number = 0; m <= 3; m++) {
+  for (let m = 0; m <= 3; m++) {
     const nArray: bigint[] = []
-    for (let n: bigint = 0n; n <= 9n; n++) {
+    for (let n = 0n; n <= 9n; n++) {
       nArray.push(ackermann(m, n))
     }
     mArray.push(nArray)
@@ -92,7 +92,7 @@ export const gridTraveler = memoize((height: number, width: number): number => {
   const normalizeGT = (nHeight: number, nWidth: number) => {
     // Swap if height > width to leverage memoization of symmetry in the problem
     if (nHeight > nWidth) {
-      let swap = nHeight; nHeight = nWidth; nWidth = swap
+      const swap = nHeight; nHeight = nWidth; nWidth = swap
     }
     return gridTraveler(nHeight, nWidth)
   }
@@ -108,9 +108,9 @@ export const testGridTraveler = () => {
   gt = gridTraveler(18, 18); gt
   console.timeEnd('gridTraveler')
 
-  let hc = gridTraveler.stats.hitCount; hc
-  let mc = gridTraveler.stats.missCount; mc
-  let total = hc + mc; total
+  const hc = gridTraveler.stats.hitCount; hc
+  const mc = gridTraveler.stats.missCount; mc
+  const total = hc + mc; total
 
   console.log(gridTraveler)
 }
@@ -150,18 +150,18 @@ export const testNumWays = () => {
   console.log(fib(4))
   console.log(fib(5))
 
-  let ϕ = (1 + Math.sqrt(5)) / 2; ϕ
-  let n = 39
-  let strides = [1, 2]
+  const ϕ = (1 + Math.sqrt(5)) / 2; ϕ
+  const n = 39
+  const strides = [1, 2]
   console.log(numWays(n, strides))
 
   let ratio = numWays(n + 1, strides) / numWays(n, strides)
   console.log(ratio)
-  console.log(ratio == ϕ)
+  console.log(ratio === ϕ)
 
   ratio = Number(fib(41)) / Number(fib(40))
   console.log(ratio)
-  console.log(ratio == ϕ)
+  console.log(ratio === ϕ)
 
   console.log(numWays)
 
@@ -171,7 +171,7 @@ export const testNumWays = () => {
   }
 
   const numWays_test = (): TestResult => {
-    return TestResult.Fail  // TODO: write test
+    return TestResult.Fail // TODO: write test
   }
 }
 
@@ -231,23 +231,23 @@ export const encodeStr = (inStr: string): string => {
   return result
 }
 
-let codedStr = encodeStr('abchijjklmmmmmmmmmmmmr')
+const codedStr = encodeStr('abchijjklmmmmmmmmmmmmr')
 console.log(codedStr)
 
 
 class BTNode {
-  value: any
+  value: unknown
   left: BTNode | undefined
   right: BTNode | undefined
-  constructor(value: any, left?: BTNode, right?: BTNode) {
+  constructor(value: unknown, left?: BTNode, right?: BTNode) {
     this.value = value
     this.left = left
     this.right = right
   }
 
-  boundary(leftSide: boolean = true, rightSide: boolean = true): any[] {
-    let result: any[] = []
-    let include = (leftSide)
+  boundary(leftSide = true, rightSide = true) {
+    let result: unknown[] = []
+    const include = (leftSide)
     if (include) result.push(this.value)
     if (this.left) {
       result = result.concat(this.left.boundary(leftSide, false))
@@ -261,7 +261,7 @@ class BTNode {
   }
 }
 
-export let node = new BTNode('a', new BTNode('b'), new BTNode('c'))
+export const node = new BTNode('a', new BTNode('b'), new BTNode('c'))
 if (node.left) {
   node.left.left = new BTNode('d', new BTNode('h'), new BTNode('i'))
   node.left.right = new BTNode('e', new BTNode('j'), new BTNode('k'))
@@ -275,14 +275,37 @@ export const boundary_test = () => {
   console.log(node.boundary())
 }
 
-// export const add = (...args: number[]) => {
-//   const adder = (...args: number[]) => {
-//     let subTotal = 0
-//     for (const item of args) subTotal += item
-//     if (adder.value) adder.value += subTotal
-//     else adder.value = subTotal
-//   }
+export const add = (...args: number[]) => {
+  let sum = 0
+  const adder = (...args: number[]) => {
+    for (const item of args) sum += item
+    return adder
+  }
+  adder.valueOf = () => sum
+  return adder(...args)
+}
 
-// }
+/**
+ * Returns the sum of integers missing between the lowest and highest integers in the input list.
+ *
+ * @param {number[]} list
+ * @returns sun of missing integers
+ */
+export const missing = (list: number[]) => {
+  let lowest = Infinity
+  let highest = -Infinity
+  let sum = 0
 
-debugger
+  for (let i = 0; i < list.length; i++) {
+    lowest = Math.min(lowest, list[i])
+    highest = Math.max(highest, list[i])
+    sum += list[i]
+  }
+  const n = highest - lowest + 1
+  return n * (highest + lowest) / 2 - sum
+}
+
+export const digitCount = (n: number) => n ? Math.floor(Math.log10(Math.abs(n))) + 1 : 1
+
+console.log(`Node: ${process.version}`)
+// debugger
