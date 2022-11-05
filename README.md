@@ -1,3 +1,7 @@
+# ts-experiments - Quick TypeScript Experiments
+
+A place for quick experiments in TypeScript with node and Vitest.
+
 ![](./assests/images/image001.jpg)
 
 From [Dynamic Programming - Learn to Solve Algorithmic Problems & Coding Challenges](https://youtu.be/oBt53YbR9Kk)
@@ -36,3 +40,5 @@ From [Dynamic Programming - Learn to Solve Algorithmic Problems & Coding Challen
     - Max Heap
   - [ ] Heap Sort
   - [ ] Quick Select
+
+Copyright &copy; 2022 Jonathan Kimball
