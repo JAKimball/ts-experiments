@@ -292,15 +292,12 @@ export const add = (...args: number[]) => {
  * @returns sun of missing integers
  */
 export const missing = (list: number[]) => {
-  let lowest = Infinity
-  let highest = -Infinity
-  let sum = 0
+  const lowest = Math.min(...list)
+  const highest = Math.max(...list)
 
-  for (let i = 0; i < list.length; i++) {
-    lowest = Math.min(lowest, list[i])
-    highest = Math.max(highest, list[i])
-    sum += list[i]
-  }
+  let sum = 0
+  for (const item of list) sum += item
+
   const n = highest - lowest + 1
   return n * (highest + lowest) / 2 - sum
 }

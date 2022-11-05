@@ -26,3 +26,13 @@ From [Dynamic Programming - Learn to Solve Algorithmic Problems & Coding Challen
 ## See also
 
 1. [TypeScript Bad Habits](https://link.medium.com/2DBxUVVedtb)
+
+## TODO
+
+- [ ] Checkout the following
+  - [ ] Suffix Trees
+  - [ ] Heaps
+    - Min Heap
+    - Max Heap
+  - [ ] Heap Sort
+  - [ ] Quick Select
