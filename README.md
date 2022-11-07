@@ -2,7 +2,7 @@
 
 A place for quick experiments in TypeScript with node and Vitest.
 
-![](./assests/images/image001.jpg)
+![Dynamic Programming](./assests/images/image001.jpg)
 
 From [Dynamic Programming - Learn to Solve Algorithmic Problems & Coding Challenges](https://youtu.be/oBt53YbR9Kk)
 

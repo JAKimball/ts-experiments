@@ -1,6 +1,17 @@
-// import * from "jest"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { assert, describe, expect, it } from 'vitest'
-import { fib, numWays, hailstone, hailstone2, gridTraveler, decodeStr, encodeStr, node, add, missing } from './fib.js'
+import {
+  fib,
+  numWays,
+  hailstone,
+  hailstone2,
+  gridTraveler,
+  decodeStr,
+  encodeStr,
+  node,
+  add,
+  missing,
+} from './fib.js'
 // import * as fib from "./js"
 
 const ϕ = (1 + Math.sqrt(5)) / 2
@@ -16,11 +27,9 @@ describe('hailstone functions:', () => {
     expect(hailstone(7)).toBe(17)
   })
   it('hailstone2(n) === hailstone(n)', () => {
-    for (let i = 1; i <= 100; i++)
-      expect(hailstone2(i)).toBe(hailstone(i))
+    for (let i = 1; i <= 100; i++) expect(hailstone2(i)).toBe(hailstone(i))
     // console.table(hailstone)
     // console.table(hailstone2)
-
   })
 })
 
@@ -56,7 +65,20 @@ describe('encodeStr function:', () => {
 
 describe('Boundary method', () => {
   it('gives expected result', () => {
-    expect(node.boundary()).toStrictEqual(['a', 'b', 'd', 'h', 'i', 'j', 'k', 'f', 'n', 'o', 'g', 'c'])
+    expect(node.boundary()).toStrictEqual([
+      'a',
+      'b',
+      'd',
+      'h',
+      'i',
+      'j',
+      'k',
+      'f',
+      'n',
+      'o',
+      'g',
+      'c',
+    ])
   })
 })
 

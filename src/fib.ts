@@ -46,7 +46,10 @@ export const ackermann_tests = () => {
   console.timeEnd()
   console.log(ackermann)
 
-  console.table([...ackermann_m.map.values()], ['result', 'hitCount', 'stackHeight', 'maxStackHeight', 'branchSize'])
+  console.table(
+    [...ackermann_m.map.values()],
+    ['result', 'hitCount', 'stackHeight', 'maxStackHeight', 'branchSize']
+  )
   console.log(ackermann_m.stats, ackermann_m.stats.savings)
 }
 
@@ -66,12 +69,12 @@ export const testFib = () => {
 }
 
 export const hailstone = memoize((n: number): number => {
-  return n <= 1 ? 1 : 1 + ((n % 2) ? hailstone(n * 3 + 1) : hailstone(n / 2))
+  return n <= 1 ? 1 : 1 + (n % 2 ? hailstone(n * 3 + 1) : hailstone(n / 2))
 })
 
 export const hailstone2 = memoize((n: number): number => {
   // take advantage of the fact that an odd number always leads to an even number
-  return n <= 1 ? 1 : ((n % 2) ? 2 + hailstone2((n * 3 + 1) / 2) : 1 + hailstone2(n / 2))
+  return n <= 1 ? 1 : n % 2 ? 2 + hailstone2((n * 3 + 1) / 2) : 1 + hailstone2(n / 2)
 })
 
 export const testHailstone = () => {
@@ -79,10 +82,8 @@ export const testHailstone = () => {
   // for (let i = 1; i <= 100; i++)
   //   console.log(`${i}: ${hailstone(i)}`);
   // console.timeEnd('hailstone');
-
   // console.log(hailstone);
   // console.log(hailstone2);
-
   // const orderPair = ([x: x, y: y])
 }
 
@@ -92,7 +93,9 @@ export const gridTraveler = memoize((height: number, width: number): number => {
   const normalizeGT = (nHeight: number, nWidth: number) => {
     // Swap if height > width to leverage memoization of symmetry in the problem
     if (nHeight > nWidth) {
-      const swap = nHeight; nHeight = nWidth; nWidth = swap
+      const swap = nHeight
+      nHeight = nWidth
+      nWidth = swap
     }
     return gridTraveler(nHeight, nWidth)
   }
@@ -103,20 +106,24 @@ export const gridTraveler = memoize((height: number, width: number): number => {
 export const testGridTraveler = () => {
   let gt = 0
   console.time('gridTraveler')
-  gt = gridTraveler(5, 5); gt
+  gt = gridTraveler(5, 5)
+  gt
   // gt = gridTraveler(4, 4); gt
-  gt = gridTraveler(18, 18); gt
+  gt = gridTraveler(18, 18)
+  gt
   console.timeEnd('gridTraveler')
 
-  const hc = gridTraveler.stats.hitCount; hc
-  const mc = gridTraveler.stats.missCount; mc
-  const total = hc + mc; total
+  const hc = gridTraveler.stats.hitCount
+  hc
+  const mc = gridTraveler.stats.missCount
+  mc
+  const total = hc + mc
+  total
 
   console.log(gridTraveler)
 }
 
 // ====================================================
-
 
 export const numWays = memoize((height: number, strides: number[]): number => {
   if (height === 0) return 1
@@ -150,7 +157,8 @@ export const testNumWays = () => {
   console.log(fib(4))
   console.log(fib(5))
 
-  const ϕ = (1 + Math.sqrt(5)) / 2; ϕ
+  const ϕ = (1 + Math.sqrt(5)) / 2
+  ϕ
   const n = 39
   const strides = [1, 2]
   console.log(numWays(n, strides))
@@ -232,8 +240,7 @@ export const encodeStr = (inStr: string): string => {
 }
 
 const codedStr = encodeStr('abchijjklmmmmmmmmmmmmr')
-console.log(codedStr)
-
+// console.log(codedStr)
 
 class BTNode {
   value: unknown
@@ -247,7 +254,7 @@ class BTNode {
 
   boundary(leftSide = true, rightSide = true) {
     let result: unknown[] = []
-    const include = (leftSide)
+    const include = leftSide
     if (include) result.push(this.value)
     if (this.left) {
       result = result.concat(this.left.boundary(leftSide, false))
@@ -255,8 +262,7 @@ class BTNode {
     if (this.right) {
       result = result.concat(this.right.boundary(false, rightSide))
     }
-    if (!include && (rightSide || (!this.left && !this.right)))
-      result.push(this.value)
+    if (!include && (rightSide || (!this.left && !this.right))) result.push(this.value)
     return result
   }
 }
@@ -299,10 +305,10 @@ export const missing = (list: number[]) => {
   for (const item of list) sum += item
 
   const n = highest - lowest + 1
-  return n * (highest + lowest) / 2 - sum
+  return (n * (highest + lowest)) / 2 - sum
 }
 
-export const digitCount = (n: number) => n ? Math.floor(Math.log10(Math.abs(n))) + 1 : 1
+export const digitCount = (n: number) => (n ? Math.floor(Math.log10(Math.abs(n))) + 1 : 1)
 
 console.log(`Node: ${process.version}`)
 // debugger
