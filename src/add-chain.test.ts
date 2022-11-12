@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { assert, describe, expect, it } from 'vitest'
 
-import { add } from './median-two-sorted-arrays.js'
+import { add } from './add-chain.js'
 describe('"add" function', () => {
   // it.each([[[3], 3], [[], 0], [[1, 3], 3], [[2, 30, 10], 4]])(
   //   'Evaluate to the sum of arguments',
