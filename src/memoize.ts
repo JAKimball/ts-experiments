@@ -1,5 +1,5 @@
 type MemoFunction<F> = F & {
-  map: Map<any, any>
+  map: Map<string, unknown>
   stats: {
     hitCount: number
     missCount: number
@@ -8,17 +8,17 @@ type MemoFunction<F> = F & {
   }
 }
 
-type MemoizableFunction = (...args: any[]) => any
+type MemoizableFunction = (...args: unknown[]) => unknown
 
 // To allow any bigint type arguments to be indexed in the map...
 // (see: https://github.com/GoogleChromeLabs/jsbi/issues/30)
-
-(BigInt.prototype as any).toJSON = function () {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+;(BigInt.prototype as any).toJSON = function () {
   return this.toString()
 }
 
 /**
- * Generically create a memoized version of the function passed.  
+ * Generically create a memoized version of the function passed.
  * The function can recursively call its memoized version.
  *
  * @param {Function} nonMemoFunction
@@ -33,15 +33,18 @@ export const memoize = <F extends MemoizableFunction>(nonMemoFunction: F): MemoF
     hitCount: 0,
     missCount: 0,
     equivalentCallCount: 0,
-    get savings() { return (this.equivalentCallCount - this.missCount) / this.equivalentCallCount },
+    get savings() {
+      return (this.equivalentCallCount - this.missCount) / this.equivalentCallCount
+    },
   }
 
   let branchSize = 0
-  const branchSizeStack = new Array
-  let height = 0, maxHeight = 0
-  const maxHeightStack = new Array
+  const branchSizeStack = []
+  let height = 0,
+    maxHeight = 0
+  const maxHeightStack = []
 
-  const memoized = (...args: any[]) => {
+  const memoized = (...args: unknown[]) => {
     const key = JSON.stringify(args)
 
     let cache = map.get(key)
@@ -53,7 +56,7 @@ export const memoize = <F extends MemoizableFunction>(nonMemoFunction: F): MemoF
       height++
       cache = {
         hitCount: 0,
-        result: nonMemoFunction(...args)
+        result: nonMemoFunction(...args),
       }
       cache.stackHeight = height
       maxHeight = Math.max(maxHeight, height)
