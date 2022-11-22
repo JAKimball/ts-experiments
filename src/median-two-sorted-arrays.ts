@@ -1,3 +1,16 @@
+/**
+ * Given two sorted arrays nums1 and nums2 of size m and n
+ * respectively, return the median of the two sorted arrays.
+ *
+ * The overall run time complexity should be O(log (m+n)).
+ *
+ * From: https://leetcode.com/problems/median-of-two-sorted-arrays/
+ *
+ * @export
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @returns {number}
+ */
 export function findMedianSortedArrays(nums1: number[], nums2: number[]): number {
   const midPoint = (nums1.length + nums2.length) / 2
   midPoint
