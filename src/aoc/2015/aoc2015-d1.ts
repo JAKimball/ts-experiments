@@ -1,7 +1,7 @@
 import fs from 'fs'
 
 // Synchronously read our data file
-const input = fs.readFileSync('assets/aoc/aoc2015-d1.txt', 'utf8')
+const input = fs.readFileSync('assets/aoc/2015/aoc2015-d1.txt', 'utf8')
 
 let floor = 0
 
