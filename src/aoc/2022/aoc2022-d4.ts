@@ -1,6 +1,5 @@
 import fs from 'fs'
 
-// Synchronously read our data file
 // const rawInput = fs.readFileSync('assets/aoc/2022/aoc2022-d4-sample.txt', 'utf8')
 const rawInput = fs.readFileSync('assets/aoc/2022/aoc2022-d4.txt', 'utf8')
 const input = rawInput.split('\n')
