@@ -45,7 +45,6 @@ const hasRepeatInTwo = (str: string) => {
 }
 
 const part1 = () => {
-  // eslint-disable-next-line prefer-const
   let total = 0
   input.forEach(line => {
     total += countVowels(line) >= 3 && hasDoubleLetter(line) && !hasNaughtyStrings(line) ? 1 : 0
@@ -54,7 +53,6 @@ const part1 = () => {
 }
 
 const part2 = () => {
-  // eslint-disable-next-line prefer-const
   let total = 0
   input.forEach(line => {
     total += hasRepeatingPair(line) && hasRepeatInTwo(line) ? 1 : 0
