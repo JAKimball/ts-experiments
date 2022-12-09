@@ -1,10 +1,10 @@
 import fs from 'fs'
-import * as lib from '../lib/index.js'
+import * as lib from '../../lib/index.js'
 
-const [year, day] = ['2022', '6']
+const [year, day, path] = ['', '', '']
 
-const rawInput = fs.readFileSync(`assets/aoc/${year}/aoc${year}-d${day}-sample.txt`, 'utf8')
-// const rawInput = fs.readFileSync(`assets/aoc/${year}/aoc${year}-d${day}.txt`, 'utf8')
+const rawInput = fs.readFileSync(`${path}aoc${year}-d${day}-sample.txt`, 'utf8')
+// const rawInput = fs.readFileSync(`${path}aoc${year}-d${day}.txt`, 'utf8')
 // const [raw1, raw2] = rawInput.split('\n\n')
 const input = rawInput.split('\n')
 
