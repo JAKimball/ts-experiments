@@ -53,6 +53,8 @@ export const ackermann_tests = () => {
   console.log(ackermann_m.stats, ackermann_m.stats.savings)
 }
 
+ackermann_tests()
+
 export const fib = memoize((n: number): bigint => {
   if (n <= 2) return 1n
   return fib(n - 2) + fib(n - 1)
