@@ -3,10 +3,14 @@ import * as lib from '../../lib/index.js'
 
 const [year, day, path] = ['', '', '']
 
-const rawInput = fs.readFileSync(`${path}aoc${year}-d${day}-sample.txt`, 'utf8')
-// const rawInput = fs.readFileSync(`${path}aoc${year}-d${day}.txt`, 'utf8')
+// eslint-disable-next-line prefer-const
+let testSample = false
+testSample = true
+const fullPath = `${path}aoc${year}-d${day}${testSample ? '-sample' : ''}.txt`
+const rawInput = fs.readFileSync(fullPath, 'utf8')
 // const [raw1, raw2] = rawInput.split('\n\n')
 const input = rawInput.split('\n')
+while (input[input.length - 1] === '') input.pop()
 
 const part1 = () => {
   // eslint-disable-next-line prefer-const
