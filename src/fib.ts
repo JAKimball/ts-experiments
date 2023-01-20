@@ -1,59 +1,4 @@
-// "use strict";
-
 import { memoize } from './memoize.js'
-
-type AckermannFunction = {
-  (m: number, n: bigint): bigint
-}
-
-type CountedFunction<F> = F & {
-  callCount: number
-}
-
-export const ackermann: CountedFunction<AckermannFunction> = ((m: number, n: bigint) => {
-  ackermann.callCount++
-  if (m === 0) return n + 1n
-  if (n === 0n) return ackermann(m - 1, 1n)
-  return ackermann(m - 1, ackermann(m, n - 1n))
-}) as CountedFunction<AckermannFunction>
-ackermann.callCount = 0
-
-export const ackermann_m = memoize((m: number, n: bigint): bigint => {
-  if (m === 0) return n + 1n
-  if (n === 0n) return ackermann_m(m - 1, 1n)
-  return ackermann_m(m - 1, ackermann_m(m, n - 1n))
-})
-
-export const ackermann_test = (ackermann: AckermannFunction) => {
-  const mArray: bigint[][] = []
-  for (let m = 0; m <= 3; m++) {
-    const nArray: bigint[] = []
-    for (let n = 0n; n <= 9n; n++) {
-      nArray.push(ackermann(m, n))
-    }
-    mArray.push(nArray)
-  }
-  console.table(mArray)
-}
-
-export const ackermann_tests = () => {
-  console.time()
-  ackermann_test(ackermann_m)
-  console.timeEnd()
-
-  console.time()
-  ackermann_test(ackermann)
-  console.timeEnd()
-  console.log(ackermann)
-
-  console.table(
-    [...ackermann_m.map.values()],
-    ['result', 'hitCount', 'stackHeight', 'maxStackHeight', 'branchSize']
-  )
-  console.log(ackermann_m.stats, ackermann_m.stats.savings)
-}
-
-ackermann_tests()
 
 export const fib = memoize((n: number): bigint => {
   if (n <= 2) return 1n
@@ -67,7 +12,7 @@ export const testFib = () => {
   // console.log(fib(400));
   console.timeEnd()
 
-  console.log(fib, fib.stats.savings)
+  // console.log(fib, fib.stats.savings)
 }
 
 export const hailstone = memoize((n: number): number => {
@@ -78,16 +23,6 @@ export const hailstone2 = memoize((n: number): number => {
   // take advantage of the fact that an odd number always leads to an even number
   return n <= 1 ? 1 : n % 2 ? 2 + hailstone2((n * 3 + 1) / 2) : 1 + hailstone2(n / 2)
 })
-
-export const testHailstone = () => {
-  // console.time('hailstone');
-  // for (let i = 1; i <= 100; i++)
-  //   console.log(`${i}: ${hailstone(i)}`);
-  // console.timeEnd('hailstone');
-  // console.log(hailstone);
-  // console.log(hailstone2);
-  // const orderPair = ([x: x, y: y])
-}
 
 export const gridTraveler = memoize((height: number, width: number): number => {
   if (height === 1 || width === 1) return 1
@@ -281,16 +216,6 @@ if (node.right) {
 
 export const boundary_test = () => {
   console.log(node.boundary())
-}
-
-export const add = (...args: number[]) => {
-  let sum = 0
-  const adder = (...args: number[]) => {
-    for (const item of args) sum += item
-    return adder
-  }
-  adder.valueOf = () => sum
-  return adder(...args)
 }
 
 /**

@@ -9,15 +9,13 @@ import {
   decodeStr,
   encodeStr,
   node,
-  add,
   missing,
 } from './fib.js'
 // import * as fib from "./js"
 
-const ϕ = (1 + Math.sqrt(5)) / 2
-
 describe('fib function:', () => {
   it('the ratio of fib(n+1)/fib(n) should approach ϕ for higher values of n', () => {
+    const ϕ = (1 + Math.sqrt(5)) / 2
     expect(Number(fib(41)) / Number(fib(40))).toBe(ϕ)
   })
 })
@@ -28,8 +26,75 @@ describe('hailstone functions:', () => {
   })
   it('hailstone2(n) === hailstone(n)', () => {
     for (let i = 1; i <= 100; i++) expect(hailstone2(i)).toBe(hailstone(i))
-    // console.table(hailstone)
-    // console.table(hailstone2)
+    console.table(
+      [...hailstone.map.values()],
+      ['result', 'hitCount', 'stackHeight', 'maxStackHeight', 'branchSize']
+    )
+
+    console.table(
+      [...hailstone2.map.values()],
+      ['result', 'hitCount', 'stackHeight', 'maxStackHeight', 'branchSize']
+    )
+  })
+})
+
+describe('gridTraveler function:', () => {
+  it('gridTraveler(1, 1) === 1', () => {
+    expect(gridTraveler(1, 1)).toBe(1)
+  })
+  it('gridTraveler(2, 3) === 3', () => {
+    expect(gridTraveler(2, 3)).toBe(3)
+  })
+  it('gridTraveler(3, 2) === 3', () => {
+    expect(gridTraveler(3, 2)).toBe(3)
+  })
+  it('gridTraveler(3, 3) === 6', () => {
+    expect(gridTraveler(3, 3)).toBe(6)
+  })
+  it('gridTraveler(18, 18) === 2333606220', () => {
+    expect(gridTraveler(18, 18)).toBe(2333606220)
+  })
+})
+
+describe('numWays function:', () => {
+  it('numWays(0, [1, 2]) === 1', () => {
+    expect(numWays(0, [1, 2])).toBe(1)
+  })
+  it('numWays(1, [1, 2]) === 1', () => {
+    expect(numWays(1, [1, 2])).toBe(1)
+  })
+  it('numWays(2, [1, 2]) === 2', () => {
+    expect(numWays(2, [1, 2])).toBe(2)
+  })
+  it('numWays(3, [1, 2]) === 3', () => {
+    expect(numWays(3, [1, 2])).toBe(3)
+  })
+  it('numWays(4, [1, 2]) === 5', () => {
+    expect(numWays(4, [1, 2])).toBe(5)
+  })
+  it('numWays(5, [1, 2]) === 8', () => {
+    expect(numWays(5, [1, 2])).toBe(8)
+  })
+  it('numWays(6, [1, 2]) === 13', () => {
+    expect(numWays(6, [1, 2])).toBe(13)
+  })
+  it('numWays(7, [1, 2]) === 21', () => {
+    expect(numWays(7, [1, 2])).toBe(21)
+  })
+  it('numWays(4, [1, 3, 5]) === 3', () => {
+    expect(numWays(4, [1, 3, 5])).toBe(3)
+  })
+  it('numWays(5, [1, 3, 5]) === 5', () => {
+    expect(numWays(5, [1, 3, 5])).toBe(5)
+  })
+  it('numWays(6, [1, 3, 5]) === 8', () => {
+    expect(numWays(6, [1, 3, 5])).toBe(8)
+  })
+  it('numWays(7, [1, 3, 5]) === 12', () => {
+    expect(numWays(7, [1, 3, 5])).toBe(12)
+  })
+  it('numWays(8, [1, 3, 5]) === 19', () => {
+    expect(numWays(8, [1, 3, 5])).toBe(19)
   })
 })
 
@@ -79,36 +144,6 @@ describe('Boundary method', () => {
       'g',
       'c',
     ])
-  })
-})
-
-describe('"add" function', () => {
-  // it.each([[[3], 3], [[], 0], [[1, 3], 3], [[2, 30, 10], 4]])(
-  //   'Evaluate to the sum of arguments',
-  //   (input, expected) => {
-  //     expect(+add(...input)).toBe(expected)
-  //   }
-  // )// TODO: Report bug where vitest extension miscounts tests when it.each is used.
-  it('return a function', () => {
-    expect(add()).toBeInstanceOf(Function)
-  })
-  // it.each([[+add()()], 0])('Chaining partials work correctly', (input, expected) => {
-  //   expect(input).toBe(expected)
-  // })
-  it('Evaluate to the sum of arguments', () => {
-    expect(+add()).toEqual(0)
-    expect(+add(10)).toEqual(10)
-    expect(+add(10, 20)).toEqual(30)
-    expect(+add(10)(20)).toEqual(30)
-    expect(+add(10, 20, 6)).toEqual(36)
-    expect(+add(10, 20, 6, 6)).toEqual(42)
-    expect(+add(10, 20, 6)(6)).toEqual(42)
-    expect(+add(10, 20)(6, 6)).toEqual(42)
-    expect(+add(10)(20, 6, 6)).toEqual(42)
-    expect(+add(10, 20)(6)(6)).toEqual(42)
-    expect(+add(10)(20)(6)(6)).toEqual(42)
-    expect(+add(10)(20)(6)(6)()).toEqual(42)
-    expect(+add()(10)(20)(6)(6)).toEqual(42)
   })
 })
 
