@@ -3,6 +3,7 @@ export const ints = (str: string) => {
 }
 
 let inputIterator: IterableIterator<string>
+
 export const initReadLn = (input: string) => {
   const inputArray = input.split('\n')
   while (inputArray[inputArray.length - 1] === '') inputArray.pop()
